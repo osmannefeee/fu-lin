@@ -1,6 +1,6 @@
 # KVKK AYDINLATMA METNİ (TASLAK — Fu-Lin)
 
-> ⚠️ Şablondur, son hali için danışmana okutun.
+> NOT: Şablondur, son hali için danışmana okutun.
 
 **Veri Sorumlusu:** Fu-Lin (bireysel girişim) — 0551 194 78 40 — fulinyazilim@outlook.com
 

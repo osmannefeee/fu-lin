@@ -1,6 +1,6 @@
 # YAZILIM LİSANS VE SATIŞ SÖZLEŞMESİ (TASLAK)
 
-> ⚠️ Bu metin şablondur, hukuki danışmanlık değildir. Kullanmadan önce marka/hukuk danışmanına okutun.
+> NOT: Bu metin şablondur, hukuki danışmanlık değildir. Kullanmadan önce marka/hukuk danışmanına okutun.
 
 ## 1. TARAFLAR
 - **Lisans Veren (Fu-Lin):** [Ad Soyad], Tel: 0551 194 78 40, E-posta: fulinyazilim@outlook.com
