@@ -183,6 +183,7 @@ footer a:hover{color:var(--cyan)}
 .sysreq li{margin:7px 0}
 .trial-right{text-align:center}
 .big-btn{font-size:17px;padding:17px 26px}
+.trial-right .btn.ghost:hover{background:linear-gradient(90deg,#06b6d4,#8b5cf6);border-color:transparent;color:#fff;transform:translateY(-2px)}
 .trial-right small{display:block;margin:10px 0 16px;color:var(--mut)}
 .video-ph{border:1px dashed var(--vio);border-radius:16px;padding:34px 16px;color:var(--vio);font-weight:600}
 

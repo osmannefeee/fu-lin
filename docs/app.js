@@ -73,6 +73,11 @@
       { t: "Tek Servis", f: "₺9.900", d: "Tek bilgisayar. Elektronik, otomotiv veya telefon-PC profilinden biri. Ömür boyu + 1 yıl destek.", tag: null, b: "Seç", stil: "ghost" },
       { t: "Pro", f: "₺14.900", d: "3 bilgisayar, logo uyarlaması, fatura belgesi kurulumu, öncelikli destek.", tag: "Popüler", b: "Seç", stil: "primary" },
       { t: "Zincir / Özel", f: "Teklif", d: "Çok şubeli servislere özel çok kullanıcılı sürüm ve eğitim.", tag: null, b: "Görüşelim", stil: "ghost" }
+    ],
+    teknik: [
+      { t: "Tek Servis", f: "₺9.900", d: "Tek bilgisayar. Servis kaydı, form, garanti takibi, teknisyen kadrosu. Ömür boyu + 1 yıl destek.", tag: null, b: "Seç", stil: "ghost" },
+      { t: "Pro", f: "₺14.900", d: "3 bilgisayar, logo uyarlaması, öncelikli destek ve eğitim.", tag: "Popüler", b: "Seç", stil: "primary" },
+      { t: "Zincir / Özel", f: "Teklif", d: "Çok şubeli servislere özel çok kullanıcılı sürüm ve eğitim.", tag: null, b: "Görüşelim", stil: "ghost" }
     ]
   };
   function escH(s) {
