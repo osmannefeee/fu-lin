@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fu-Lin — İşletmeler İçin Hazır Yazılımlar</title>
+<link rel="icon" href="logo.ico">
+<meta name="description" content="Fu-Lin: klinikler ve işletmeler için hızlı, modern masaüstü ve web yazılımları.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="bg-orbs"><span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span></div>
+<div class="grid-overlay"></div>
+
+<header id="nav">
+  <a class="logo" href="#top">Fu<span>-Lin</span></a>
+  <nav class="links">
+    <a href="#urunler">Ürünler</a>
+    <a href="#odeme">Ödeme</a>
+    <a href="#ozellikler">Neden Fu-Lin</a>
+    <a href="#fiyat">Fiyat</a>
+    <a href="#referanslar">Referanslar</a>
+    <a href="#sss">SSS</a>
+    <a href="#deneme" class="btn small">Ücretsiz Dene</a>
+  </nav>
+  <button id="menuBtn" aria-label="Menü">☰</button>
+</header>
+<nav id="mobileMenu">
+  <a href="#urunler">Ürünler</a>
+  <a href="#ozellikler">Neden Fu-Lin</a>
+  <a href="#fiyat">Fiyat</a>
+  <a href="#deneme">Ücretsiz Dene</a>
+  <a href="#referanslar">Referanslar</a>
+  <a href="#sss">SSS</a>
+  <a href="#iletisim">Teklif Al</a>
+</nav>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="badge"><span class="pulse"></span> Yeni: TamirPro v1.0 yayında — 2 ürün satışta</div>
+      <h1>İşletmen için yazılım<br><span class="grad">haftalar değil,</span><br><span id="typed"></span><span class="caret">|</span></h1>
+      <p>Fu-Lin; kliniklerin, tamir servislerinin ve küçük işletmelerin günlük işini hızlandıran hazır uygulamalar üretir. Kur, giriş yap, çalışmaya başla.</p>
+      <div class="cta">
+        <a href="#deneme" class="btn primary">Ücretsiz Dene →</a>
+        <a href="#urunler" class="btn ghost">Ürünleri Gör</a>
+      </div>
+      <div class="stats">
+        <div><b><span class="counter" data-to="2">0</span></b><small>satışa hazır ürün</small></div>
+        <div><b><span class="counter" data-to="3">0</span></b><small>tamir iş kolu</small></div>
+        <div><b><span class="counter" data-to="100">0</span>%</b><small>çevrimdışı çalışma</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="mock tilt">
+        <div class="mock-bar"><i></i><i></i><i></i><span>Fu-Lin • Diş Klinik Yönetim</span></div>
+        <div class="mock-body">
+          <div class="mock-cards"><b></b><b></b><b></b><b></b></div>
+          <div class="mock-rows"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="mock-toast">✔ SMS hatırlatma gönderildi</div>
+      </div>
+      <div class="chip c1">🦷 Diş Şeması</div>
+      <div class="chip c2">🔧 İş Emri Takibi</div>
+      <div class="chip c3">✉️ SMS Hatırlatma</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee"><div class="track">
+    <span>Randevu Takibi ✦ Hasta Kartı ✦ Diş Şeması ✦ SMS Hatırlatma ✦ Stok &amp; Gider ✦ Ciro Raporu ✦ Kullanıcı Rolleri ✦ CSV Yedek ✦&nbsp;</span>
+    <span>İş Emri ✦ Parça Stoku ✦ Fatura Belgesi ✦ Borç Takibi ✦ Cihaz Türleri ✦ Durum Akışı ✦ CSV Rapor ✦&nbsp;</span>
+  </div></div>
+
+  <!-- ÜRÜNLER -->
+  <section id="urunler" class="section">
+    <p class="kicker reveal">Ürünler</p>
+    <h2 class="reveal">Satışa hazır uygulamalar</h2>
+    <div class="cards">
+      <article class="card featured reveal">
+        <div class="tag">Çok satan</div>
+        <div class="emoji">🦷</div>
+        <h3>Diş Klinik Yönetim</h3>
+        <p>Özel diş kliniklerine eksiksiz takip: hasta, randevu, renkli diş şeması, tedavi + ödeme, SMS hatırlatma, stok ve ciro raporu. Tek dosya exe, kurulum 2 dakika.</p>
+        <ul><li>✔ Çevrimdışı çalışır</li><li>✔ admin / hekim / sekreter rolleri</li><li>✔ NetGSM SMS entegrasyonu</li></ul>
+        <div class="price-row"><b>₺12.900</b><small>lansman fiyatı • tek seferlik + 1 yıl destek</small></div>
+        <a href="#iletisim" class="btn primary full">Hemen Satın Al</a>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">🔧</div>
+        <h3>TamirPro Servis Takip</h3>
+        <p>Elektronik, otomotiv veya telefon-PC: kurulumda iş kolunu seç, sistem ona göre kurulsun. İş emri, parça stoku, tahsilat, fatura belgesi, SMS.</p>
+        <div class="price-row"><b>₺9.900</b><small>lansman fiyatı • tek seferlik</small></div>
+        <a href="#iletisim" class="btn primary full">Hemen Satın Al</a>
+      </article>
+      <article class="card reveal">
+        <div class="emoji">🛠️</div>
+        <h3>Teknik Servis Takip</h3>
+        <p>Arıza kaydı, servis formu, parça stoku ve garanti takibi tek panelde.</p>
+        <div class="soon">Yakında</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ÖZELLİKLER -->
+  <section id="ozellikler" class="section">
+    <p class="kicker reveal">Neden Fu-Lin</p>
+    <h2 class="reveal">Klasik ajans sitesi değil, ürün var</h2>
+    <div class="feat-grid">
+      <div class="feat reveal"><b>⚡</b><h4>2 dakikada kurulum</h4><p>Kurulum sihirbazı her şeyi halleder. Eğitim videosu kutudan çıkar.</p></div>
+      <div class="feat reveal"><b>🔌</b><h4>İnternetsiz çalışır</h4><p>Veriler sizde kalır. Sunucu ücreti, aidat yok.</p></div>
+      <div class="feat reveal"><b>🎨</b><h4>İşletme kimliğine uyarlanır</h4><p>Logo, işletme adı ve SMS şablonu size özel ayarlanır.</p></div>
+      <div class="feat reveal"><b>🛟</b><h4>Gerçek destek</h4><p>Telefon + uzaktan bağlantı ile aynı gün çözüm.</p></div>
+    </div>
+  </section>
+
+  <!-- FİYAT -->
+  <section id="fiyat" class="section">
+    <p class="kicker reveal">Fiyat</p>
+    <h2 class="reveal">Hizmeti seç, fiyatı gör</h2>
+    <div class="fiyat-sec reveal" id="fiyatSec">
+      <button data-urun="dis" class="aktif">🦷 Diş Klinik Yönetim</button>
+      <button data-urun="tamir">🔧 TamirPro Servis</button>
+    </div>
+    <p class="reveal" style="color:var(--mut);margin-bottom:22px">Net, gizli ücret yok. Tüm paketlere 14 gün koşulsuz iade dahil.</p>
+    <div class="cards pricing" id="fiyatKartlar">
+    </div>
+  </section>
+
+  <!-- ÖDEME -->
+  <section id="odeme" class="section">
+    <p class="kicker reveal">Güvenli ödeme</p>
+    <h2 class="reveal">Ödeme 3 adımda, risksiz</h2>
+    <div class="odeme-adim reveal"><b>1</b><p><b>Siparişi oluştur</b> — aşağıdaki formu doldur, talebin panele düşsün.</p></div>
+    <div class="odeme-adim reveal"><b>2</b><p><b>Ödemeyi yap</b> — Havale/EFT ile. IBAN bilgisi WhatsApp'tan anında gönderilir.</p></div>
+    <div class="odeme-adim reveal"><b>3</b><p><b>Lisansı al</b> — ödeme onaylanınca kurulum + lisans anahtarın aynı gün teslim edilir.</p></div>
+    <div class="cards" style="margin-top:22px">
+      <article class="card featured reveal"><div class="tag">Aktif</div><div class="emoji">🏦</div><h3>Havale / EFT</h3><p>Banka transferi ile ödeme. Dekontu WhatsApp'tan iletmen yeterli, kontrol edip lisansı açıyoruz.</p><a class="btn primary full" href="https://wa.me/905511947840?text=Merhaba%2C%20IBAN%20bilgisi%20alabilir%20miyim%3F" target="_blank" rel="noopener">IBAN İste →</a></article>
+      <article class="card reveal"><div class="emoji">💳</div><h3>Online kart ile ödeme</h3><p>iyzico altyapısıyla kartlı ödeme çok yakında. Şahıs şirketi kurulumu tamamlanınca aktif olacak.</p><div class="soon">Yakında</div></article>
+      <article class="card reveal"><div class="emoji">🛡️</div><h3>Güvencen ne?</h3><p>14 gün koşulsuz iade + ödeme öncesi ücretsiz deneme + her adımda WhatsApp hattı. Riski biz üstleniyoruz.</p><a class="btn ghost full" href="#sss">SSS'yi Oku</a></article>
+    </div>
+  </section>
+
+  <!-- DENEME -->
+  <section id="deneme" class="section">
+    <div class="trial-box reveal">
+      <div>
+        <p class="kicker">Ücretsiz deneme</p>
+        <h2>14 gün ücretsiz dene, kredi kartı yok</h2>
+        <p>Tüm özellikler açık deneme sürümünü indir, işletmende test et. Beğenmezsen tek tıkla kaldır, verilerin silinir.</p>
+        <ul class="sysreq">
+          <li>🖥️ Windows 10 / 11 (64-bit)</li>
+          <li>🧠 4 GB RAM, 200 MB boş alan</li>
+          <li>🔌 İnternet gerekmez</li>
+        </ul>
+      </div>
+      <div class="trial-right">
+        <a href="indir/DisKlinikYonetim_Deneme.exe" class="btn primary full big-btn">⬇ Diş Klinik Deneme</a>
+        <a href="indir/TamirPro_Deneme.exe" class="btn ghost full big-btn" style="margin-top:10px">⬇ TamirPro Deneme</a>
+        <small>v1.0 • ~12 MB • Kurulum 2 dakika</small>
+        <div class="video-ph">▶ Kurulum videosu yakında burada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFERANSLAR -->
+  <section id="referanslar" class="section">
+    <p class="kicker reveal">Referanslar</p>
+    <h2 class="reveal">Kullananlar ne diyor</h2>
+    <div class="ref-grid">
+      <article class="ref-card reveal"><p>Henüz yayınlanmış referansımız yok — şeffaf olmak istiyoruz. İlk kullanan işletmelerden biri ol, hem lansman fiyatından yararlan hem referansımız ol.</p><b>Senin işletmen burada olabilir</b><small>Lansman dönemi</small></article>
+      <article class="ref-card campaign reveal"><p>🚀 <b>Lansman kampanyası:</b> ilk 5 müşteriye %20 indirim + ücretsiz kurulum.</p><a href="#iletisim" class="btn primary full">Yerini Ayırt</a></article>
+    </div>
+  </section>
+
+  <!-- GALERİ -->
+  <section id="galeri" class="section">
+    <p class="kicker reveal">Tanıtım</p>
+    <h2 class="reveal">Paylaşıma hazır görseller</h2>
+    <div class="galeri-grid">
+    </div>
+    <p class="reveal" style="color:var(--mut);margin-top:14px">🎬 Tanıtım videoları güncelleniyor — çok yakında burada.</p>
+  </section>
+
+  <!-- SSS -->
+  <section id="sss" class="section narrow">
+    <p class="kicker reveal">SSS</p>
+    <h2 class="reveal">Merak edilenler</h2>
+    <details class="reveal"><summary>Verilerim nerede saklanıyor?</summary><p>Bilgisayarınızda, size özel veritabanında. İnternet kesilse bile çalışır.</p></details>
+    <details class="reveal"><summary>SMS nasıl gönderiliyor?</summary><p>NetGSM hattınızla entegre çalışır. Hattınız yoksa kurulumda yardımcı oluruz; kontör ücreti operatöre ödenir.</p></details>
+    <details class="reveal"><summary>Başka bilgisayara taşıyabilir miyim?</summary><p>Evet. Yedek al → yeni bilgisayara kur → geri yükle. 5 dakika sürer.</p></details>
+    <details class="reveal"><summary>İade var mı?</summary><p>Kurulum sonrası 14 gün koşulsuz iade.</p></details>
+  </section>
+
+  <!-- İLETİŞİM -->
+  <section id="iletisim" class="section">
+    <div class="contact-box reveal">
+      <div>
+        <p class="kicker">İletişim</p>
+        <h2>Demo iste, aynı gün arayalım</h2>
+        <p>Formu doldurun; 15 dakikalık canlı demo + fiyat teklifi için dönüş yapalım.</p>
+        <p class="contact-lines">📞 <b>0551 194 78 40</b><br>✉️ <b>info@fu-lin.com</b></p>
+      </div>
+      <form id="leadForm">
+        <input name="ad" placeholder="Adınız Soyadınız" required>
+        <input name="tel" placeholder="Telefon (05__ ___ __ __)" required>
+        <select name="urun"><option>Diş Klinik Yönetim</option><option>TamirPro Servis Takip</option><option>Teknik Servis (ön kayıt)</option></select>
+        <textarea name="not" rows="3" placeholder="Notunuz (işletme adı, bilgisayar sayısı...)"></textarea>
+        <button class="btn primary full" type="submit">Demo Talebi Gönder →</button>
+        <small id="formNote"></small>
+      </form>
+    </div>
+  </section>
+  <!-- YASAL -->
+  <section id="yasal" class="section narrow">
+    <p class="kicker reveal">Yasal</p>
+    <h2 class="reveal">Şeffaf bilgi</h2>
+    <div class="legal-grid">
+      <div class="legal-card reveal"><h4>👤 Hakkımızda</h4><p>Fu-Lin bireysel bir yazılım girişimidir (freelance), şirket değiliz — bunu açıkça söylüyoruz. İstanbul merkezli çalışıyor, uzaktan kurulum + aynı gün destek veriyoruz.<br>📞 0551 194 78 40 • WhatsApp hattı aktif.</p></div>
+      <div class="legal-card reveal"><h4>🔒 KVKK aydınlatma</h4><p>Demo formu ile paylaştığınız ad ve telefon, yalnızca size ulaşmak için kullanılır; üçüncü kişilerle paylaşılmaz. Silinmesini isterseniz tek mesaj yeterli.</p></div>
+      <div class="legal-card reveal"><h4>↩️ İade koşulları</h4><p>Kurulum sonrası 14 gün koşulsuz iade. Lisans ücreti kesintisiz geri ödenir; SMS kontörleri operatöre aittir.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="logo" href="#top">Fu<span>-Lin</span></a>
+  <p><a href="#yasal">KVKK • İade • Şirket Bilgileri</a><br>Klinikler, servisler ve küçük işletmeler için hazır yazılımlar. © 2026 Fu-Lin. Tüm hakları saklıdır.</p>
+</footer>
+
+<a id="wa" href="https://wa.me/905511947840?text=Merhaba%2C%20Fu-Lin%20demo%20istiyorum" target="_blank" rel="noopener" aria-label="WhatsApp">✆</a>
+
+<script src="app.js"></script>
+</body>
+</html>

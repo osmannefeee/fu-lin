@@ -1,0 +1,58 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0b1120;color:#e8eef7;font-family:"Segoe UI",system-ui,sans-serif;min-height:100vh}
+.logo{font-size:22px;font-weight:800;color:#fff;text-decoration:none}
+.logo span,.login-box h1 span{color:#22d3ee}
+.logo small{font-size:12px;color:#93a1b8;font-weight:400}
+
+/* giriş */
+#giris{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:#111a30;border:1px solid #22304d;border-radius:20px;padding:44px;width:340px;text-align:center}
+.login-box h1{margin-bottom:20px}
+.login-box input{width:100%;padding:12px;border-radius:10px;border:1px solid #22304d;background:#0a1120;color:#fff;margin-bottom:12px}
+.login-box button{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#06b6d4,#8b5cf6);color:#fff;font-weight:700;cursor:pointer}
+#girisHata{color:#f87171;font-size:13px;display:block;margin-top:10px;min-height:18px}
+
+/* üst bar */
+#panel header{display:flex;align-items:center;justify-content:space-between;padding:14px 26px;background:#0d1426;border-bottom:1px solid #22304d;position:sticky;top:0;z-index:5}
+#panel nav{display:flex;gap:8px}
+#panel nav button{background:none;border:1px solid transparent;color:#93a1b8;padding:9px 16px;border-radius:999px;cursor:pointer;font-size:14px}
+#panel nav button.aktif,#panel nav button:hover{color:#fff;border-color:#22d3ee}
+#yeniRozet{background:#ef4444;color:#fff;border-radius:999px;font-size:11px;padding:1px 7px}
+main{max-width:1100px;margin:0 auto;padding:28px 20px 60px}
+
+/* kartlar */
+.kartlar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kart{border-radius:16px;padding:20px;color:#fff}
+.kart small{opacity:.85}.kart b{font-size:30px;display:block;margin:4px 0}.kart span{font-size:12px;opacity:.85}
+.mavi{background:linear-gradient(135deg,#0ea5e9,#0369a1)}.mor{background:linear-gradient(135deg,#8b5cf6,#5b21b6)}
+.yesil{background:linear-gradient(135deg,#10b981,#065f46)}.turuncu{background:linear-gradient(135deg,#f59e0b,#b45309)}
+
+.kutu{background:#111a30;border:1px solid #22304d;border-radius:16px;padding:22px;margin-bottom:16px}
+.kutu h3{margin-bottom:14px}
+.grafik{display:flex;align-items:flex-end;gap:10px;height:150px}
+.grafik .bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.grafik .dolgu{width:100%;max-width:54px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#22d3ee,#8b5cf6);min-height:4px}
+.grafik small{color:#93a1b8;font-size:11px}
+.cip{display:inline-block;background:#1c2942;border:1px solid #22304d;border-radius:999px;padding:6px 14px;margin:4px;font-size:13px}
+
+/* tablo */
+.bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.btn{border:1px solid #22304d;color:#e8eef7;border-radius:10px;padding:9px 16px;cursor:pointer;background:#16203a;text-decoration:none;font-size:14px}
+.btn.birincil,#sKaydet.birincil{background:linear-gradient(90deg,#06b6d4,#8b5cf6);border:none;color:#fff}
+.tablo-sar{overflow-x:auto;background:#111a30;border:1px solid #22304d;border-radius:16px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #1c2942;white-space:nowrap}
+th{color:#93a1b8;font-size:12px;text-transform:uppercase}
+td select{background:#0a1120;color:#fff;border:1px solid #22304d;border-radius:8px;padding:5px}
+td button{background:none;border:1px solid #22304d;color:#93a1b8;border-radius:8px;padding:5px 10px;cursor:pointer;margin-right:4px}
+td button:hover{color:#f87171;border-color:#f87171}
+td button.sat{color:#6ee7b7}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.yeni{background:#22d3ee}.arandi{background:#f59e0b}.satildi{background:#10b981}.olumsuz{background:#64748b}
+
+/* modal */
+#siparisModal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.modal{background:#111a30;border:1px solid #22304d;border-radius:18px;padding:26px;width:360px;display:flex;flex-direction:column;gap:10px}
+.modal input,.modal select{padding:11px;border-radius:10px;border:1px solid #22304d;background:#0a1120;color:#fff}
+.modal-bar{display:flex;gap:10px}
+.modal-bar button{flex:1;padding:11px;border-radius:10px;border:1px solid #22304d;background:none;color:#fff;cursor:pointer}
+@media(max-width:800px){.kartlar{grid-template-columns:1fr 1fr}}

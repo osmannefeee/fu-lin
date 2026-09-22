@@ -1,0 +1,6 @@
+# Çalışma artıkları — GitHub'a gitmez
+*.db
+*.log
+__pycache__/
+build/
+dist/

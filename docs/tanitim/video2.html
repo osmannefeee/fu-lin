@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fu-Lin Özellik Turu (kayıt için)</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#111;font-family:Arial,sans-serif;display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px;color:#ddd}
+  #sahne{position:relative;width:min(92vw,720px);aspect-ratio:1/1;background:#070b16;border-radius:18px;overflow:hidden}
+  .perde{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:8%;opacity:0;transition:opacity .6s}
+  .perde.aktif{opacity:1}
+  .perde .no{color:#22d3ee;font-weight:bold;font-size:clamp(16px,3vw,22px);letter-spacing:3px}
+  .perde h1{font-size:clamp(28px,5.6vw,50px);color:#fff;line-height:1.3;margin:10px 0}
+  .perde p{font-size:clamp(15px,2.8vw,22px);color:#cbd5e1;line-height:1.7}
+  .perde .tel{color:#fff;font-weight:bold;font-size:clamp(22px,4.4vw,36px);margin-top:14px}
+  .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55}
+  #noktalar{display:flex;gap:8px}
+  #noktalar i{width:10px;height:10px;border-radius:50%;background:#333}
+  #noktalar i.aktif{background:#a78bfa}
+  #kontroller{display:flex;gap:10px}
+  button{background:#a78bfa;border:none;border-radius:999px;padding:10px 24px;font-weight:bold;cursor:pointer;font-size:15px}
+  button.ikincil{background:#333;color:#fff}
+  small{max-width:720px;text-align:center;line-height:1.7}
+</style>
+</head>
+<body>
+<div id="sahne">
+  <div class="orb" style="width:60%;height:60%;background:#7c3aed;top:-15%;right:-15%"></div>
+  <div class="orb" style="width:55%;height:55%;background:#0d9488;bottom:-10%;left:-15%"></div>
+  <section class="perde aktif"><div class="no">1 / 6</div><h1>📅 Randevu Takibi</h1><p>Hekim + koltuk bazlı program.<br>Çakışma uyarısı otomatik.</p></section>
+  <section class="perde"><div class="no">2 / 6</div><h1>🦷 Renkli Diş Şeması</h1><p>32 dişi tek bakışta gör.<br>Çürük, dolgu, kanal renk renk.</p></section>
+  <section class="perde"><div class="no">3 / 6</div><h1>💳 Borç + Ödeme</h1><p>Kalan borç her hastada yazar.<br>Taksitli tahsilat, kasa özeti.</p></section>
+  <section class="perde"><div class="no">4 / 6</div><h1>✉️ SMS Hatırlatma</h1><p>Yarınki randevulara tek tıkla.<br>Gelmeyen hasta kalmaz.</p></section>
+  <section class="perde"><div class="no">5 / 6</div><h1>📦 Stok + 📈 Rapor</h1><p>Kritik stok uyarısı.<br>Aylık ciro, hekim primi hazır.</p></section>
+  <section class="perde"><div class="no">6 / 6</div><h1>14 gün ücretsiz dene</h1><div class="tel">0551 194 78 40</div><p>Fu-Lin • indir, kur, kullan</p></section>
+</div>
+<div id="noktalar"></div>
+<div id="kontroller">
+  <button id="oynat">▶ Baştan Oynat</button>
+  <button id="duraklat" class="ikincil">⏸ Duraklat</button>
+</div>
+<small>F11 tam ekran + <b>Win+G</b> kayıt. Her perde 5 saniye, toplam ~30 saniye.</small>
+<script>
+(function(){
+  var perdeler=document.querySelectorAll(".perde"), noktaKutu=document.getElementById("noktalar");
+  var i=0, zaman=null, SURE=5000;
+  perdeler.forEach(function(_,k){var n=document.createElement("i");noktaKutu.appendChild(n);});
+  var noktalar=noktaKutu.querySelectorAll("i");
+  function goster(k){
+    i=k%perdeler.length;
+    perdeler.forEach(function(p,a){p.classList.toggle("aktif",a===i);});
+    noktalar.forEach(function(n,a){n.classList.toggle("aktif",a===i);});
+  }
+  function baslat(){dur();zaman=setInterval(function(){goster(i+1);},SURE);}
+  function dur(){if(zaman)clearInterval(zaman);zaman=null;}
+  document.getElementById("oynat").onclick=function(){goster(0);baslat();};
+  document.getElementById("duraklat").onclick=function(){
+    if(zaman){dur();this.textContent="▶ Devam";}else{baslat();this.textContent="⏸ Duraklat";}
+  };
+  goster(0);baslat();
+})();
+</script>
+</body>
+</html>

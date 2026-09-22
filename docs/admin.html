@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fu-Lin Admin</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div id="giris">
+  <div class="login-box">
+    <h1>Fu<span>-Lin</span> Admin</h1>
+    <input id="sifre" type="password" placeholder="Admin şifresi" autocomplete="off">
+    <button id="girisBtn">Giriş Yap →</button>
+    <small id="girisHata"></small>
+  </div>
+</div>
+
+<div id="panel" style="display:none">
+  <header>
+    <a class="logo" href="/">Fu<span>-Lin</span> <small>admin</small></a>
+    <nav>
+      <button data-sekme="panel" class="aktif">📊 Panel</button>
+      <button data-sekme="talepler">✉️ Talepler <b id="yeniRozet"></b></button>
+      <button data-sekme="siparisler">🧾 Siparişler</button>
+      <button id="cikis">Çıkış</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sekme-panel" class="sekme">
+      <div class="kartlar">
+        <div class="kart mavi"><small>Toplam ziyaret</small><b id="kZiyaret">-</b><span id="kBugun"></span></div>
+        <div class="kart mor"><small>Talepler</small><b id="kTalep">-</b><span id="kYeni"></span></div>
+        <div class="kart yesil"><small>Deneme indirme</small><b id="kIndirme">-</b><span>indir/ klasörü</span></div>
+        <div class="kart turuncu"><small>Sipariş / tahsilat</small><b id="kSiparis">-</b><span id="kCiro"></span></div>
+      </div>
+      <div class="kutu">
+        <h3>Son 7 gün ziyaret</h3>
+        <div id="grafik" class="grafik"></div>
+      </div>
+      <div class="kutu">
+        <h3>Talep durumları</h3>
+        <div id="durumlar"></div>
+      </div>
+    </section>
+
+    <section id="sekme-talepler" class="sekme" style="display:none">
+      <div class="bar">
+        <h3>Demo talepleri</h3>
+        <a class="btn" href="/api/admin/csv?tablo=talepler" id="csvT">CSV indir</a>
+      </div>
+      <div class="tablo-sar"><table>
+        <thead><tr><th>Tarih</th><th>Ad</th><th>Telefon</th><th>Ürün</th><th>Not</th><th>Durum</th><th>İşlem</th></tr></thead>
+        <tbody id="talepSatir"></tbody>
+      </table></div>
+    </section>
+
+    <section id="sekme-siparisler" class="sekme" style="display:none">
+      <div class="bar">
+        <h3>Siparişler</h3>
+        <div>
+          <a class="btn" href="/api/admin/csv?tablo=siparisler" id="csvS">CSV indir</a>
+          <button class="btn birincil" id="siparisEkleBtn">+ Sipariş Ekle</button>
+        </div>
+      </div>
+      <div class="tablo-sar"><table>
+        <thead><tr><th>Tarih</th><th>Müşteri</th><th>Telefon</th><th>Ürün</th><th>Tutar</th><th>Durum</th><th>İşlem</th></tr></thead>
+        <tbody id="siparisSatir"></tbody>
+      </table></div>
+    </section>
+  </main>
+</div>
+
+<div id="siparisModal" style="display:none">
+  <div class="modal">
+    <h3>Sipariş</h3>
+    <input id="sMusteri" placeholder="Müşteri adı">
+    <input id="sTel" placeholder="Telefon">
+    <input id="sUrun" placeholder="Ürün" value="Diş Klinik Yönetim">
+    <input id="sTutar" placeholder="Tutar (TL)" inputmode="decimal">
+    <select id="sDurum"><option>bekliyor</option><option>odendi</option><option>iptal</option></select>
+    <input id="sNot" placeholder="Not (kurulum kodu vb.)">
+    <div class="modal-bar">
+      <button id="sVazgec">Vazgeç</button>
+      <button id="sKaydet" class="birincil">Kaydet</button>
+    </div>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
