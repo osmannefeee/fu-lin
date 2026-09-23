@@ -78,6 +78,11 @@
       { t: "Tek Servis", f: "₺9.900", d: "Tek bilgisayar. Servis kaydı, form, garanti takibi, teknisyen kadrosu. Ömür boyu + 1 yıl destek.", tag: null, b: "Seç", stil: "ghost" },
       { t: "Pro", f: "₺14.900", d: "3 bilgisayar, logo uyarlaması, öncelikli destek ve eğitim.", tag: "Popüler", b: "Seç", stil: "primary" },
       { t: "Zincir / Özel", f: "Teklif", d: "Çok şubeli servislere özel çok kullanıcılı sürüm ve eğitim.", tag: null, b: "Görüşelim", stil: "ghost" }
+    ],
+    crm: [
+      { t: "Tek Kullanıcı", f: "₺9.900", d: "Tek bilgisayar. Huni, teklif, aktivite, görev, SMS. Ömür boyu + 1 yıl destek.", tag: null, b: "Seç", stil: "ghost" },
+      { t: "Ekip", f: "₺14.900", d: "3 bilgisayar, logo uyarlaması, öncelikli destek ve eğitim.", tag: "Popüler", b: "Seç", stil: "primary" },
+      { t: "Özel", f: "Teklif", d: "Kalabalık ekiplere özel çok kullanıcılı sürüm ve eğitim.", tag: null, b: "Görüşelim", stil: "ghost" }
     ]
   };
   function escH(s) {
