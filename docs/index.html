@@ -53,7 +53,7 @@
         <a href="#urunler" class="btn ghost">Ürünleri Gör</a>
       </div>
       <div class="stats">
-        <div><b><span class="counter" data-to="4">0</span></b><small>satışa hazır ürün</small></div>
+        <div><b><span class="counter" data-to="5">0</span></b><small>satışa hazır ürün</small></div>
         <div><b><span class="counter" data-to="3">0</span></b><small>tamir iş kolu</small></div>
         <div><b><span class="counter" data-to="100">0</span>%</b><small>çevrimdışı çalışma</small></div>
       </div>
@@ -114,6 +114,13 @@
         <div class="price-row"><b>₺9.900</b><small>lansman fiyatı • tek seferlik</small></div>
         <a href="#iletisim" class="btn primary full">Hemen Satın Al</a>
       </article>
+      <article class="card reveal">
+        <div class="emoji">📦</div>
+        <h3>ErpPro</h3>
+        <p>Stok, cari, alış/satış faturaları ve kasa tek panelde. Fatura kesince stok otomatik işlenir.</p>
+        <div class="price-row"><b>₺9.900</b><small>lansman fiyatı • tek seferlik</small></div>
+        <a href="#iletisim" class="btn primary full">Hemen Satın Al</a>
+      </article>
     </div>
   </section>
 
@@ -159,6 +166,7 @@
       <button data-urun="tamir">🔧 TamirPro Servis</button>
       <button data-urun="teknik">🛠️ Teknik Servis</button>
       <button data-urun="crm">📇 CrmPro</button>
+      <button data-urun="erp">📦 ErpPro</button>
     </div>
     <p class="reveal" style="color:var(--mut);margin-bottom:22px">Net, gizli ücret yok. Tüm paketlere 14 gün koşulsuz iade dahil.</p>
     <div class="cards pricing" id="fiyatKartlar">
@@ -197,6 +205,7 @@
         <a href="indir/TamirPro_Deneme.exe" class="btn ghost full big-btn" style="margin-top:10px">⬇ TamirPro Deneme</a>
         <a href="indir/ServisPro_Deneme.exe" class="btn ghost full big-btn" style="margin-top:10px">⬇ Servis Takip Deneme</a>
         <a href="indir/CrmPro_Deneme.exe" class="btn ghost full big-btn" style="margin-top:10px">⬇ CrmPro Deneme</a>
+        <a href="indir/ErpPro_Deneme.exe" class="btn ghost full big-btn" style="margin-top:10px">⬇ ErpPro Deneme</a>
         <small>v1.0 • ~12 MB • Kurulum 2 dakika</small>
         <div class="video-ph">▶ Kurulum videosu yakında burada</div>
       </div>
@@ -245,7 +254,7 @@
       <form id="leadForm">
         <input name="ad" placeholder="Adınız Soyadınız" required>
         <input name="tel" placeholder="Telefon (05__ ___ __ __)" required>
-        <select name="urun"><option>Diş Klinik Yönetim</option><option>TamirPro Servis Takip</option><option>Teknik Servis Takip</option><option>CrmPro</option><option>Kurumsal Web Sitesi (teklif)</option></select>
+        <select name="urun"><option>Diş Klinik Yönetim</option><option>TamirPro Servis Takip</option><option>Teknik Servis Takip</option><option>CrmPro</option><option>ErpPro</option><option>Kurumsal Web Sitesi (teklif)</option></select>
         <textarea name="not" rows="3" placeholder="Notunuz (işletme adı, bilgisayar sayısı...)"></textarea>
         <button class="btn primary full" type="submit">Demo Talebi Gönder →</button>
         <small id="formNote"></small>

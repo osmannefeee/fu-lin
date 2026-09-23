@@ -83,6 +83,11 @@
       { t: "Tek Kullanıcı", f: "₺9.900", d: "Tek bilgisayar. Huni, teklif, aktivite, görev, SMS. Ömür boyu + 1 yıl destek.", tag: null, b: "Seç", stil: "ghost" },
       { t: "Ekip", f: "₺14.900", d: "3 bilgisayar, logo uyarlaması, öncelikli destek ve eğitim.", tag: "Popüler", b: "Seç", stil: "primary" },
       { t: "Özel", f: "Teklif", d: "Kalabalık ekiplere özel çok kullanıcılı sürüm ve eğitim.", tag: null, b: "Görüşelim", stil: "ghost" }
+    ],
+    erp: [
+      { t: "Tek Kullanıcı", f: "₺9.900", d: "Tek bilgisayar. Stok, cari, alış/satış, kasa. Ömür boyu + 1 yıl destek.", tag: null, b: "Seç", stil: "ghost" },
+      { t: "Ekip", f: "₺14.900", d: "3 bilgisayar, logo uyarlaması, öncelikli destek ve eğitim.", tag: "Popüler", b: "Seç", stil: "primary" },
+      { t: "Özel", f: "Teklif", d: "Kalabalık ekiplere özel çok kullanıcılı sürüm ve eğitim.", tag: null, b: "Görüşelim", stil: "ghost" }
     ]
   };
   function escH(s) {
