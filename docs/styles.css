@@ -186,6 +186,7 @@ footer a:hover{color:var(--cyan)}
 .trial-right .btn.ghost:hover{background:linear-gradient(90deg,#06b6d4,#8b5cf6);border-color:transparent;color:#fff;transform:translateY(-2px)}
 .trial-right small{display:block;margin:10px 0 16px;color:var(--mut)}
 .video-ph{border:1px dashed var(--vio);border-radius:16px;padding:34px 16px;color:var(--vio);font-weight:600}
+.kurulum-video{width:100%;border-radius:16px;border:1px solid var(--line);margin-top:6px}
 
 /* referanslar */
 .ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
