@@ -8,6 +8,7 @@ import customtkinter as _ctk
 from tkinter import ttk as _ttk
 
 Notebook = _ttk.Notebook
+LabelFrame = _ttk.LabelFrame
 Treeview = _ttk.Treeview
 Style = _ttk.Style
 
@@ -69,6 +70,7 @@ class _TtkModul:
     """`ttk.X` erişimlerini modern sürümlere yönlendirir."""
 
     Notebook = Notebook
+    LabelFrame = LabelFrame
     Treeview = Treeview
     Style = Style
     Frame = Frame
