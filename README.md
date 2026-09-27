@@ -9,6 +9,7 @@
 | `docs/indir/` | Deneme exeleri (siteden indirilir) |
 
 ## Çalıştırma
+- Gerekli paket: `pip install customtkinter`
 - Diş Klinik: `python dis_klinik_yonetim.py` (giriş: admin / admin123)
 - TamirPro: `python tamir_pro.py` (açılışta iş kolu seçilir)
 - Site + panel: `python docs/server.py` → http://localhost:8000 ve http://localhost:8000/admin

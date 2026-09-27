@@ -4,7 +4,8 @@ import csv
 import os
 import tkinter as tk
 from datetime import date
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox
+from .modern import ttk
 
 from .sabitler import ROLLER
 from .yardim import para_fmt, sifre_hashla
@@ -59,7 +60,7 @@ class SekmeRapor(ttk.Frame):
 
 def kullanici_yonetimi(pencere, db):
     import sqlite3
-    win = tk.Toplevel(pencere)
+    win = ttk.Toplevel(pencere)
     win.title("Kullanıcı Yönetimi")
     win.geometry("620x400")
     tree = ttk.Treeview(win, columns=("id", "kadi", "ad", "rol", "durum"), show="headings")
@@ -77,7 +78,7 @@ def kullanici_yonetimi(pencere, db):
                                            "Aktif" if r["aktif"] else "Pasif"))
 
     def form(kayit=None):
-        f = tk.Toplevel(win)
+        f = ttk.Toplevel(win)
         f.title("Kullanıcı")
         f.geometry("360x340")
         ttk.Label(f, text="Kullanıcı adı *").pack(anchor="w", padx=12, pady=(8, 0))

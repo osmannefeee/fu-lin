@@ -1,18 +1,22 @@
 # -*- coding: utf-8 -*-
 """Kullanıcı giriş ekranı."""
 import tkinter as tk
-from tkinter import messagebox, ttk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
+from tkinter import messagebox
+from .modern import ttk
 
 from .yardim import ayar_get, sifre_hashla
 
 
 def giris_yap(db):
     sonuc = {}
-    root = tk.Tk()
+    root = ctk.CTk()
     root.title("🦷 Klinik Girişi")
     root.geometry("400x340")
     root.resizable(False, False)
-    root.configure(bg="#0f172a")
+    root.configure(fg_color="#0f172a")
 
     tk.Label(root, text="🦷", font=("Segoe UI", 40), bg="#0f172a", fg="white").pack(pady=(18, 0))
     tk.Label(root, text=ayar_get(db, "klinik_adi"), font=("Segoe UI", 12, "bold"),

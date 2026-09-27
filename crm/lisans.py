@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import tkinter as tk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 import urllib.parse
 import webbrowser
 from datetime import date, datetime
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .sabitler import DENEME_GUN, LISANS_SECRET, LISANS_TEL, TARIH_FMT, WA_NO
 from .yardim import ayar
@@ -49,7 +53,7 @@ def aktivasyon_formu(parent, db):
     e_kod = ttk.Entry(cer)
     e_kod.pack(fill="x")
     e_kod.insert(0, kod)
-    e_kod.config(state="readonly")
+    e_kod.config(state="disabled")
     ttk.Label(cer, text="Lisans anahtarı:").pack(anchor="w", pady=(8, 0))
     e_key = ttk.Entry(cer)
     e_key.pack(fill="x")
@@ -74,10 +78,10 @@ def aktivasyon_formu(parent, db):
 
 def kilit_goster(db):
     s = {}
-    r = tk.Tk()
+    r = ctk.CTk()
     r.title("CrmPro — Lisans")
     r.geometry("400x400")
-    r.configure(bg="#0b1120")
+    r.configure(fg_color="#0b1120")
     tk.Label(r, text="🔒", font=("Segoe UI", 34), bg="#0b1120").pack(pady=(14, 0))
     tk.Label(r, text=f"14 günlük deneme doldu.\n{LISANS_TEL}", bg="#0b1120", fg="white",
              font=("Segoe UI", 11, "bold"), justify="center").pack(pady=6)

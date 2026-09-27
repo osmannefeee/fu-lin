@@ -35,6 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='tamir_yonetim/tamir_version.txt',
-    icon=['tamir_yonetim/tamir.ico'],
+    version='tamir/tamir_version.txt',
+    icon=['tamir/tamir.ico'],
 )

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """📊 Panel: özet kartları + bugünkü randevular + borçlular."""
-from tkinter import ttk
+from .modern import ttk
 from datetime import date
 
 from .sabitler import KART_RENKLERI
@@ -18,15 +18,13 @@ class SekmePanel(ttk.Frame):
         for i, (anahtar, baslik) in enumerate([
                 ("hasta", "👥 Toplam Hasta"), ("bugun", "📅 Bugünkü Randevu"),
                 ("borc", "💰 Bekleyen Alacak"), ("aylik", "💵 Bu Ay Tahsilat")]):
-            cer = ttk.Frame(kartlar, padding=12)
+            cer = ttk.Frame(kartlar, fg_color=KART_RENKLERI[i], corner_radius=14)
             cer.grid(row=0, column=i, padx=6, sticky="ew")
             kartlar.columnconfigure(i, weight=1)
-            ttk.Label(cer, text=baslik, style="Title.TLabel").pack()
-            v = ttk.Label(cer, text="-", font=("Segoe UI", 16, "bold"))
-            v.pack()
-            cer.configure(style="Card.TFrame")
+            ttk.Label(cer, text=baslik, font=("Segoe UI", 11, "bold"), text_color="white").pack(pady=(10, 0))
+            v = ttk.Label(cer, text="-", font=("Segoe UI", 16, "bold"), text_color="white")
+            v.pack(pady=(0, 12))
             self.deger[anahtar] = v
-        # kart renkleri ttk ile sınırlı; canlılık rozet tablolarda
         alt = ttk.Frame(self)
         alt.pack(fill="both", expand=True, pady=6)
         sol = ttk.LabelFrame(alt, text="📌 Bugünkü Randevular", padding=6)

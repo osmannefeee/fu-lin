@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """🦷 Diş şeması: 32 diş, renkli durum, tedaviye geçiş."""
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .sabitler import DIS_DURUMLARI, DISLER_ALT, DISLER_UST, DURUM_RENK
 from .yardim import hasta_sec_dict
@@ -33,7 +34,7 @@ class SekmeSema(ttk.Frame):
 
     def hasta_sec(self, hasta_id):
         self.harita = hasta_sec_dict(self.app.db)
-        self.cb["values"] = list(self.harita.keys())
+        self.cb.configure(values=list(self.harita.keys()))
         for ad, hid in self.harita.items():
             if hid == hasta_id:
                 self.cb.set(ad)
@@ -43,7 +44,7 @@ class SekmeSema(ttk.Frame):
     def secili_hasta(self):
         if not self.harita:
             self.harita = hasta_sec_dict(self.app.db)
-            self.cb["values"] = list(self.harita.keys())
+            self.cb.configure(values=list(self.harita.keys()))
         return self.harita.get(self.cb.get(), self.app.secili_hasta)
 
     def yenile(self):
@@ -59,7 +60,7 @@ class SekmeSema(ttk.Frame):
         self.ozet.config(text=f"İşaretli diş: {len(durumlar)}  |  Sorunlu: {sorunlu}")
         for baslik, liste in [("— ÜST ÇENE —", DISLER_UST), ("— ALT ÇENE —", DISLER_ALT)]:
             ttk.Label(self.cerceve, text=baslik, style="Title.TLabel").pack(pady=(8, 2))
-            satir = tk.Frame(self.cerceve, bg="#f1f5f9")
+            satir = tk.Frame(self.cerceve, bg="#0b1120")
             satir.pack()
             for no in liste:
                 durum = durumlar.get(no, "Sağlam")
@@ -76,7 +77,7 @@ class SekmeSema(ttk.Frame):
             return
         rows = db.listele("SELECT * FROM dis_durum WHERE hasta_id=? AND dis_no=?", (hid, dis_no))
         mevcut = rows[0] if rows else None
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title(f"Diş {dis_no}")
         win.geometry("340x300")
         ttk.Label(win, text=f"Diş No: {dis_no}", style="Title.TLabel").pack(pady=8)

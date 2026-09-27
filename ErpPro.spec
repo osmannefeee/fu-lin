@@ -35,6 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='erp_yonetim/erp_version.txt',
-    icon=['erp_yonetim/erp.ico'],
+    version='erp/erp_version.txt',
+    icon=['erp/erp.ico'],
 )

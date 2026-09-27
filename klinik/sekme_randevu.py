@@ -2,7 +2,8 @@
 """📅 Randevular + ✉️ SMS hatırlatma."""
 import tkinter as tk
 from datetime import datetime
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .sabitler import RANDEVU_DURUM, SAAT_FMT, TARIH_FMT, TEDAVI_FIYAT
 from .tema import cift_tag, tablo_kur
@@ -59,7 +60,7 @@ class SekmeRandevu(ttk.Frame):
         if not hastalar:
             messagebox.showinfo("Bilgi", "Önce hasta ekleyin.")
             return
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Randevu")
         win.geometry("420x460")
         ttk.Label(win, text="Hasta").pack(anchor="w", padx=12, pady=(8, 0))
@@ -116,7 +117,7 @@ class SekmeRandevu(ttk.Frame):
         rid = self.secili_id()
         if not rid:
             return
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Durum Değiştir")
         win.geometry("280x180")
         ttk.Label(win, text="Yeni durum:").pack(pady=8)
@@ -140,7 +141,7 @@ class SekmeRandevu(ttk.Frame):
     # ---------- SMS ----------
     def sms_penceresi(self):
         db = self.app.db
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("✉️ SMS Hatırlatma")
         win.geometry("760x600")
         ust = ttk.Frame(win, padding=8)
@@ -154,7 +155,7 @@ class SekmeRandevu(ttk.Frame):
         tree = tablo_kur(win, [("hasta", "Hasta", 200), ("tel", "Telefon", 130),
                                ("saat", "Saat", 70), ("hekim", "Hekim", 170)])
         ttk.Label(win, text="Mesaj önizleme:").pack(anchor="w", padx=8, pady=(8, 0))
-        txt = tk.Text(win, height=10, font=("Segoe UI", 10))
+        txt = tk.Text(win, height=10, font=("Segoe UI", 10), bg="#0f172a", fg="#e8eef7", insertbackground="white")
         txt.pack(fill="both", expand=True, padx=8, pady=4)
         veriler = []
 
@@ -214,7 +215,7 @@ class SekmeRandevu(ttk.Frame):
 
     def sms_ayarlari(self, parent):
         db = self.app.db
-        win = tk.Toplevel(parent)
+        win = ttk.Toplevel(parent)
         win.title("SMS Ayarları")
         win.geometry("460x380")
         alanlar = {}
@@ -238,7 +239,7 @@ class SekmeRandevu(ttk.Frame):
         ttk.Button(win, text="Kaydet", command=kaydet).pack(pady=10)
 
     def sms_log_goster(self):
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("SMS Logu")
         win.geometry("700x420")
         tree = tablo_kur(win, [("tarih", "Tarih", 90), ("tel", "Telefon", 120),

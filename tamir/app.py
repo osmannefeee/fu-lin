@@ -3,9 +3,13 @@
 import csv
 import os
 import tkinter as tk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 import traceback
 from datetime import date
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox
+from .modern import ttk
 
 from . import SURUM
 from .lisans import aktivasyon_formu, durum, kilit_goster
@@ -30,23 +34,24 @@ def profil_secici():
             except Exception:
                 pass
     sec = {}
-    r = tk.Tk()
+    r = ctk.CTk()
     r.title("TamirPro Kurulum")
     r.geometry("520x420")
-    r.configure(bg="#0b1120")
-    tk.Label(r, text="🔧 TamirPro", font=("Segoe UI", 24, "bold"), bg="#0b1120", fg="white").pack(pady=(20, 4))
-    tk.Label(r, text="Ne tür tamir yapıyorsun? Seç, sistem ona göre kurulsun.",
-             bg="#0b1120", fg="#93a1b8", font=("Segoe UI", 11)).pack(pady=(0, 16))
+    r.configure(fg_color="#0b1120")
+    ctk.CTkLabel(r, text="🔧 TamirPro", font=("Segoe UI", 24, "bold"),
+                 text_color="white").pack(pady=(20, 4))
+    ctk.CTkLabel(r, text="Ne tür tamir yapıyorsun? Seç, sistem ona göre kurulsun.",
+                 text_color="#93a1b8", font=("Segoe UI", 11)).pack(pady=(0, 16))
     for k, p in PROFILLER.items():
-        b = tk.Button(r, text=f"{p['ad']}\n{p['slogan']}", font=("Segoe UI", 12, "bold"),
-                      bg=p["renk"], fg="white", relief="flat", cursor="hand2", width=34, height=2,
-                      command=lambda k=k: (sec.update(profil=k), r.destroy()))
+        b = ctk.CTkButton(r, text=f"{p['ad']}\n{p['slogan']}", font=("Segoe UI", 12, "bold"),
+                          fg_color=p["renk"], text_color="white", cursor="hand2", width=340, height=56,
+                          command=lambda k=k: (sec.update(profil=k), r.destroy()))
         b.pack(pady=6)
     r.mainloop()
     return sec.get("profil")
 
 
-class App(tk.Tk):
+class App(ctk.CTk):
     def __init__(self, db, p):
         super().__init__()
         self.db = db
@@ -54,7 +59,7 @@ class App(tk.Tk):
         self.report_callback_exception = self._hata
         self.title(f"{p['ad']} v{SURUM} — {p['slogan']}")
         self.geometry("1280x780")
-        self.configure(bg="#0b1120")
+        self.configure(fg_color="#0b1120")
 
         st = ttk.Style(self)
         try:
@@ -62,9 +67,17 @@ class App(tk.Tk):
         except Exception:
             pass
         st.configure("TNotebook.Tab", font=("Segoe UI", 10, "bold"), padding=(12, 8))
+        st.configure("TNotebook", background="#0b1120", borderwidth=0)
+        st.configure("TNotebook.Tab", background="#1a2340", foreground="#cbd5e1")
+        st.map("TNotebook.Tab", background=[("selected", "#0ea5e9")],
+               foreground=[("selected", "white")])
         st.configure("TButton", font=("Segoe UI", 10), padding=6)
-        st.configure("Treeview", rowheight=26, font=("Segoe UI", 10))
-        st.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"))
+        st.configure("Treeview", rowheight=26, font=("Segoe UI", 10),
+                     background="#131a2e", fieldbackground="#131a2e", foreground="#e8eef7")
+        st.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"),
+                     background="#1e2a4a", foreground="white")
+        st.map("Treeview", background=[("selected", "#0ea5e9")],
+               foreground=[("selected", "white")])
         st.configure("TFrame", background="#0b1120")
         st.configure("TLabel", background="#0b1120", foreground="#e8eef7")
         st.configure("TLabelframe", background="#0b1120", foreground="#e8eef7")
@@ -127,17 +140,17 @@ class App(tk.Tk):
             t.heading(k, text=b)
             t.column(k, width=w)
         t.pack(fill="both", expand=True, pady=4)
-        t.tag_configure("odd", background="#f8fafc")
-        t.tag_configure("even", background="#ffffff")
-        t.tag_configure("kritik", background="#fee2e2")
-        t.tag_configure("ok", background="#dcfce7")
+        t.tag_configure("odd", background="#131a2e", foreground="#e8eef7")
+        t.tag_configure("even", background="#182036", foreground="#e8eef7")
+        t.tag_configure("kritik", background="#5a1f1f", foreground="#fecaca")
+        t.tag_configure("ok", background="#0f3d2e", foreground="#a7f3d0")
         return t
 
     def satir(self, t, i, vals, ozel=""):
         t.insert("", "end", values=vals, tags=(ozel or ("even" if i % 2 else "odd"),))
 
     def lisans_penc(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Lisans")
         w.geometry("360x360")
         d = durum(self.db)
@@ -148,7 +161,7 @@ class App(tk.Tk):
             aktivasyon_formu(w, self.db)
 
     def isletme_ayar(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("İşletme")
         w.geometry("340x200")
         ttk.Label(w, text="İşletme adı (fiş/SMS'te görünür):").pack(anchor="w", padx=12, pady=(10, 0))
@@ -221,7 +234,7 @@ class App(tk.Tk):
         if not mus:
             messagebox.showinfo("Bilgi", "Önce müşteri ekleyin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Yeni İş Emri")
         w.geometry("440x620")
         ttk.Label(w, text="Müşteri *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -287,7 +300,7 @@ class App(tk.Tk):
         if not e:
             messagebox.showinfo("Bilgi", "Önce iş emri seçin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"Durum (Emir #{e['id']})")
         w.geometry("320x200")
         ttk.Label(w, text=f"Mevcut: {e['durum']}").pack(pady=8)
@@ -309,7 +322,7 @@ class App(tk.Tk):
             messagebox.showinfo("Bilgi", "Önce iş emri seçin.")
             return
         stok = {r["urun"]: (r["miktar"], r["fiyat"], r["id"]) for r in self.db.listele("SELECT * FROM parcalar ORDER BY urun")}
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"Parça Ekle (Emir #{e['id']})")
         w.geometry("360x300")
         ttk.Label(w, text="Parça (stoktan düşer)").pack(anchor="w", padx=12, pady=(8, 0))
@@ -351,7 +364,7 @@ class App(tk.Tk):
         if not e:
             messagebox.showinfo("Bilgi", "Önce iş emri seçin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"Fatura (Emir #{e['id']})")
         w.geometry("380x220")
         ttk.Label(w, text="KDV oranı (%)").pack(anchor="w", padx=12, pady=(10, 0))
@@ -390,7 +403,7 @@ class App(tk.Tk):
             m = urllib.parse.quote(f"Merhaba, {fat['no']} nolu servis faturanız hazır. Toplam: {tl(fat['genel'])}")
             webbrowser.open(f"https://wa.me/{WA_NO}?text={m}")
 
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"Fatura {fat['no']}")
         w.geometry("320x180")
         ttk.Label(w, text=f"Fatura {fat['no']} tarayıcıda açıldı.", font=("Segoe UI", 11, "bold")).pack(pady=12)
@@ -402,7 +415,7 @@ class App(tk.Tk):
         if not e:
             return
         kalan, _, _ = emir_bakiye(self.db, e["id"])
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"Tahsilat (Emir #{e['id']})")
         w.geometry("320x280")
         ttk.Label(w, text=f"Kalan: {tl(kalan)}").pack(pady=8)
@@ -445,7 +458,7 @@ class App(tk.Tk):
         self.t_mus.bind("<Double-1>", lambda e: self.mus_duzenle())
 
     def mus_form(self, kayit=None):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Müşteri")
         w.geometry("360x320")
         alan = {}
@@ -500,7 +513,7 @@ class App(tk.Tk):
                                           ("f", "Fiyat", 110), ("k", "Kritik", 80)])
 
     def stok_form(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Parça")
         w.geometry("320x280")
         ttk.Label(w, text="Parça adı *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -529,7 +542,7 @@ class App(tk.Tk):
         if not s:
             return
         sid = self.t_stok.item(s[0])["values"][0]
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Stok")
         w.geometry("260x160")
         ttk.Label(w, text="Miktar (+ giriş / - çıkış):").pack(pady=8)
@@ -561,7 +574,7 @@ class App(tk.Tk):
         ttk.Label(u, text="Durumu değişen işleri SMS ile bildir").pack(side="left")
         ttk.Button(u, text="✉️ Hazır Olanlara SMS", command=self.sms_hazir).pack(side="right", padx=3)
         ttk.Button(u, text="⚙️ Şablon", command=self.sms_sablon).pack(side="right", padx=3)
-        self.sms_txt = tk.Text(self.tr, height=8, font=("Segoe UI", 10))
+        self.sms_txt = tk.Text(self.tr, height=8, font=("Segoe UI", 10), bg="#0f172a", fg="#e8eef7", insertbackground="white")
         self.sms_txt.pack(fill="x", pady=4)
         ttk.Label(self.tr, text="📈 Rapor", font=("Segoe UI", 11, "bold")).pack(anchor="w")
         rb = ttk.Frame(self.tr)
@@ -590,7 +603,7 @@ class App(tk.Tk):
         messagebox.showinfo("SMS", f"{len(rows)} mesaj hazır, kopyalandı.")
 
     def sms_sablon(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("SMS Şablonu")
         w.geometry("420x200")
         ttk.Label(w, text="Değişkenler: {ad} {no} {durum} {isletme}").pack(anchor="w", padx=12, pady=(8, 0))

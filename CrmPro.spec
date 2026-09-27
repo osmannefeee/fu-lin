@@ -35,6 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='crm_yonetim/crm_version.txt',
-    icon=['crm_yonetim/crm.ico'],
+    version='crm/crm_version.txt',
+    icon=['crm/crm.ico'],
 )

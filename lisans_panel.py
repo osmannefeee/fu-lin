@@ -3,14 +3,18 @@
 # Müşteri kurulum kodunu WhatsApp'tan gönderir -> buraya yapıştır -> anahtarı alıp müşteriye yolla.
 import sys
 import tkinter as tk
-from tkinter import ttk, messagebox
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
+from tkinter import messagebox
+from modern import ttk
 import urllib.parse
 import webbrowser
 
 sys.path.insert(0, '.')
 from klinik.lisans import lisans_anahtari_uret
 
-root = tk.Tk()
+root = ctk.CTk()
 root.title("Fu-Lin — Lisans Paneli")
 root.geometry("440x380")
 root.resizable(False, False)

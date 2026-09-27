@@ -35,6 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    version='servis_yonetim/servis_version.txt',
-    icon=['servis_yonetim/servis.ico'],
+    version='servis/servis_version.txt',
+    icon=['servis/servis.ico'],
 )

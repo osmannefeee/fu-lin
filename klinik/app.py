@@ -2,9 +2,13 @@
 """Ana pencere: üst bar, sekmeler, geçişler, hata tuzağı."""
 import os
 import tkinter as tk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 import traceback
 from datetime import datetime
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from . import SURUM
 from .giris import giris_yap
@@ -23,7 +27,7 @@ from .veritabani import DB_ADI, Veritabani
 from .yardim import ayar_get, bugun_str
 
 
-class KlinikApp(tk.Tk):
+class KlinikApp(ctk.CTk):
     def __init__(self, db, kullanici):
         super().__init__()
         self.db = db
@@ -33,7 +37,7 @@ class KlinikApp(tk.Tk):
         self.title(f"Özel Diş Kliniği — Yönetim Takip Sistemi v{SURUM}")
         self.geometry("1300x780")
         self.minsize(1150, 680)
-        self.configure(bg="#f1f5f9")
+        self.configure(fg_color="#f1f5f9")
         tema_uygula(self)
 
         ust = tk.Frame(self, bg="#0f172a")
@@ -117,7 +121,7 @@ class KlinikApp(tk.Tk):
 
     # ---------- üst bar ----------
     def lisans_penc(self):
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Lisans")
         win.geometry("380x380")
         d = lisans_durumu(self.db)

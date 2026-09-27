@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """👥 Hastalar: kayıt, arama, borç rozeti, tedavi/şema geçişleri."""
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .tema import cift_tag, tablo_kur
 from .yardim import hasta_borc, para_fmt
@@ -48,7 +49,7 @@ class SekmeHasta(ttk.Frame):
                                                 h["dogum"], para_fmt(kalan)), tags=tag)
 
     def form(self, kayit=None):
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Hasta Kaydı")
         win.geometry("480x560")
         alanlar = {}
@@ -69,7 +70,7 @@ class SekmeHasta(ttk.Frame):
         satir("Alerji", "alerji", kayit["alerji"] if kayit else "")
         satir("Kronik Hastalık", "kronik", kayit["kronik"] if kayit else "")
         ttk.Label(win, text="Notlar").pack(anchor="w", padx=12, pady=(6, 0))
-        txt = tk.Text(win, height=4)
+        txt = tk.Text(win, height=4, bg="#0f172a", fg="#e8eef7", insertbackground="white")
         txt.pack(padx=12, fill="x")
         if kayit and kayit["notlar"]:
             txt.insert("1.0", kayit["notlar"])

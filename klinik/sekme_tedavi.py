@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """💳 Tedavi & Ödeme."""
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .sabitler import TEDAVI_DURUM, TEDAVI_FIYAT, ODEME_YONTEM
 from .tema import cift_tag, tablo_kur
@@ -39,7 +40,7 @@ class SekmeTedavi(ttk.Frame):
 
     def hasta_sec(self, hasta_id):
         self.harita = hasta_sec_dict(self.app.db)
-        self.cb["values"] = list(self.harita.keys())
+        self.cb.configure(values=list(self.harita.keys()))
         for ad, hid in self.harita.items():
             if hid == hasta_id:
                 self.cb.set(ad)
@@ -50,13 +51,13 @@ class SekmeTedavi(ttk.Frame):
     def secili_hasta(self):
         if not self.harita:
             self.harita = hasta_sec_dict(self.app.db)
-            self.cb["values"] = list(self.harita.keys())
+            self.cb.configure(values=list(self.harita.keys()))
         return self.harita.get(self.cb.get(), self.app.secili_hasta)
 
     def yenile(self):
         db = self.app.db
         self.harita = hasta_sec_dict(db)
-        self.cb["values"] = list(self.harita.keys())
+        self.cb.configure(values=list(self.harita.keys()))
         hid = self.secili_hasta()
         for i in self.t_ted.get_children():
             self.t_ted.delete(i)
@@ -82,7 +83,7 @@ class SekmeTedavi(ttk.Frame):
             messagebox.showinfo("Bilgi", "Önce hasta seçin.")
             return
         hekimler = hekim_sec_dict(db)
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Tedavi Ekle")
         win.geometry("430x520")
         ttk.Label(win, text="İşlem").pack(anchor="w", padx=12, pady=(8, 0))
@@ -144,7 +145,7 @@ class SekmeTedavi(ttk.Frame):
         if not s:
             return
         tid = self.t_ted.item(s[0])["values"][0]
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Tedavi İşlem")
         win.geometry("280x200")
         ttk.Label(win, text="Durum:").pack(pady=6)
@@ -169,7 +170,7 @@ class SekmeTedavi(ttk.Frame):
             messagebox.showinfo("Bilgi", "Önce hasta seçin.")
             return
         kalan, _, _ = hasta_borc(db, hid)
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Ödeme Al")
         win.geometry("380x360")
         ttk.Label(win, text=f"Kalan borç: {para_fmt(kalan)}").pack(pady=6)

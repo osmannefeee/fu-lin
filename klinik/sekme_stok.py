@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """📦 Stok & Gider."""
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .sabitler import GIDER_KATEGORI
 from .tema import cift_tag, tablo_kur
@@ -48,7 +49,7 @@ class SekmeStok(ttk.Frame):
                                                    para_fmt(r["tutar"]), r["aciklama"]), tags=cift_tag(i))
 
     def stok_form(self):
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Malzeme")
         win.geometry("360x340")
         alan = {}
@@ -84,7 +85,7 @@ class SekmeStok(ttk.Frame):
             messagebox.showinfo("Bilgi", "Malzeme seçin.")
             return
         sid = self.t_stok.item(s[0])["values"][0]
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Stok Hareket")
         win.geometry("300x200")
         ttk.Label(win, text="Miktar (+ giriş / - çıkış):").pack(pady=8)
@@ -111,7 +112,7 @@ class SekmeStok(ttk.Frame):
             self.app.yenile_hepsi()
 
     def gider_form(self):
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Gider")
         win.geometry("360x300")
         ttk.Label(win, text="Tarih (YYYY-AA-GG)").pack(anchor="w", padx=12, pady=(8, 0))

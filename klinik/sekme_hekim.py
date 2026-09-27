@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """🩺 Hekimler."""
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .tema import cift_tag, tablo_kur
 
@@ -34,7 +35,7 @@ class SekmeHekim(ttk.Frame):
         return self.app.db.listele("SELECT * FROM hekimler WHERE id=?", (hid,))[0]
 
     def form(self, kayit=None):
-        win = tk.Toplevel(self)
+        win = ttk.Toplevel(self)
         win.title("Hekim")
         win.geometry("380x300")
         ttk.Label(win, text="Ad Soyad *").pack(anchor="w", padx=12, pady=(8, 0))

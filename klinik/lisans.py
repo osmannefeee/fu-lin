@@ -2,10 +2,14 @@
 """14 günlük deneme + kurulum-kodlu lisans."""
 import hashlib
 import tkinter as tk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 import urllib.parse
 import webbrowser
 from datetime import date, datetime
-from tkinter import messagebox, ttk
+from tkinter import messagebox
+from .modern import ttk
 
 from .sabitler import DENEME_GUN, LISANS_SECRET, LISANS_TEL, TARIH_FMT, WA_NO
 from .yardim import ayar_get, ayar_set
@@ -58,7 +62,7 @@ def lisans_aktivasyon_formu(parent, db):
     e_kod = ttk.Entry(cer)
     e_kod.pack(fill="x")
     e_kod.insert(0, kod)
-    e_kod.config(state="readonly")
+    e_kod.config(state="disabled")
     ttk.Label(cer, text="Lisans anahtarı (satıcıdan aldığınız):").pack(anchor="w", pady=(8, 0))
     e_key = ttk.Entry(cer)
     e_key.pack(fill="x")
@@ -83,11 +87,11 @@ def lisans_aktivasyon_formu(parent, db):
 
 def kilit_penceresi(db, durum):
     sonuc = {}
-    root = tk.Tk()
+    root = ctk.CTk()
     root.title("Fu-Lin — Lisans")
     root.geometry("420x430")
     root.resizable(False, False)
-    root.configure(bg="#0f172a")
+    root.configure(fg_color="#0f172a")
     tk.Label(root, text="🔒", font=("Segoe UI", 36), bg="#0f172a").pack(pady=(16, 0))
     tk.Label(root, text=durum["mesaj"], font=("Segoe UI", 11, "bold"),
              bg="#0f172a", fg="white", justify="center").pack(padx=20, pady=8)

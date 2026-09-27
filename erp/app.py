@@ -2,9 +2,13 @@
 """ErpPro ana uygulama: stok + cari + alış/satış + kasa."""
 import os
 import tkinter as tk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 import traceback
 from datetime import date
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox
+from .modern import ttk
 
 from . import SURUM
 from .lisans import aktivasyon_formu, durum, kilit_goster
@@ -15,14 +19,14 @@ from .yardim import (ayar, bugun, cari_bakiye, cari_sozluk, csv_yaz,
                      fatura_no_uret, stok_degeri, tl)
 
 
-class App(tk.Tk):
+class App(ctk.CTk):
     def __init__(self, db):
         super().__init__()
         self.db = db
         self.report_callback_exception = self._hata
         self.title(f"Fu-Lin {AD} v{SURUM} — {SLOGAN}")
         self.geometry("1280x780")
-        self.configure(bg="#0b1120")
+        self.configure(fg_color="#0b1120")
 
         st = ttk.Style(self)
         try:
@@ -30,9 +34,17 @@ class App(tk.Tk):
         except Exception:
             pass
         st.configure("TNotebook.Tab", font=("Segoe UI", 10, "bold"), padding=(12, 8))
+        st.configure("TNotebook", background="#0b1120", borderwidth=0)
+        st.configure("TNotebook.Tab", background="#1a2340", foreground="#cbd5e1")
+        st.map("TNotebook.Tab", background=[("selected", "#0ea5e9")],
+               foreground=[("selected", "white")])
         st.configure("TButton", font=("Segoe UI", 10), padding=6)
-        st.configure("Treeview", rowheight=26, font=("Segoe UI", 10))
-        st.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"))
+        st.configure("Treeview", rowheight=26, font=("Segoe UI", 10),
+                     background="#131a2e", fieldbackground="#131a2e", foreground="#e8eef7")
+        st.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"),
+                     background="#1e2a4a", foreground="white")
+        st.map("Treeview", background=[("selected", "#0ea5e9")],
+               foreground=[("selected", "white")])
         st.configure("TFrame", background="#0b1120")
         st.configure("TLabel", background="#0b1120", foreground="#e8eef7")
         st.configure("TLabelframe", background="#0b1120", foreground="#e8eef7")
@@ -93,17 +105,17 @@ class App(tk.Tk):
             t.heading(k, text=b)
             t.column(k, width=w)
         t.pack(fill="both", expand=True, pady=4)
-        t.tag_configure("odd", background="#f8fafc")
-        t.tag_configure("even", background="#ffffff")
-        t.tag_configure("kritik", background="#fee2e2")
-        t.tag_configure("ok", background="#dcfce7")
+        t.tag_configure("odd", background="#131a2e", foreground="#e8eef7")
+        t.tag_configure("even", background="#182036", foreground="#e8eef7")
+        t.tag_configure("kritik", background="#5a1f1f", foreground="#fecaca")
+        t.tag_configure("ok", background="#0f3d2e", foreground="#a7f3d0")
         return t
 
     def satir(self, t, i, vals, ozel=""):
         t.insert("", "end", values=vals, tags=(ozel or ("even" if i % 2 else "odd"),))
 
     def lisans_penc(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Lisans")
         w.geometry("360x360")
         d = durum(self.db)
@@ -169,7 +181,7 @@ class App(tk.Tk):
                                           ("m", "Miktar", 80), ("a", "Alış", 100), ("s", "Satış", 100)])
 
     def urun_form(self, kayit=None):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Ürün")
         w.geometry("360x460")
         alan = {}
@@ -234,7 +246,7 @@ class App(tk.Tk):
         u = self.secili_urun()
         if not u:
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Stok Hareket")
         w.geometry("300x220")
         ttk.Label(w, text=f"{u['ad']} (mevcut: {u['miktar']})").pack(pady=6)
@@ -270,7 +282,7 @@ class App(tk.Tk):
                                           ("t2", "Telefon", 130), ("b", "Bakiye", 120)])
 
     def cari_form(self, kayit=None):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Cari")
         w.geometry("360x400")
         ttk.Label(w, text="Tip").pack(anchor="w", padx=12, pady=(8, 0))
@@ -340,7 +352,7 @@ class App(tk.Tk):
             messagebox.showinfo("Bilgi", "Önce ilgili tipte cari ekleyin.")
             return
         urunler = {f"{r['kod']} - {r['ad']}": r for r in self.db.listele("SELECT * FROM urunler ORDER BY ad")}
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"{tip} Faturası")
         w.geometry("480x560")
         ttk.Label(w, text="Cari *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -353,12 +365,12 @@ class App(tk.Tk):
         ek.pack(side="left", padx=4)
         ek.insert(0, "20")
         ttk.Button(fr, text="+ Kalem", command=lambda: kalem_ekle()).pack(side="right")
-        lst = tk.Listbox(w, height=10)
+        lst = tk.Listbox(w, height=10, bg="#0f172a", fg="#e8eef7", selectbackground="#0ea5e9", selectforeground="white")
         lst.pack(padx=12, fill="both", expand=True)
         kalemler = []
 
         def kalem_ekle():
-            k = tk.Toplevel(w)
+            k = ttk.Toplevel(w)
             k.title("Kalem")
             k.geometry("340x260")
             ttk.Label(k, text="Ürün").pack(anchor="w", padx=10, pady=(8, 0))
@@ -460,7 +472,7 @@ class App(tk.Tk):
                                              ("c", "Cari", 180), ("u", "Tutar", 120), ("a", "Açıklama", 200)])
 
     def hesap_form(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Hesap")
         w.geometry("300x200")
         ttk.Label(w, text="Ad *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -483,7 +495,7 @@ class App(tk.Tk):
     def kasa_form(self, yon):
         hesaplar = [r["ad"] for r in self.db.listele("SELECT * FROM hesaplar ORDER BY ad")]
         cariler = cari_sozluk(self.db)
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Tahsilat" if yon == "Giriş" else "Ödeme")
         w.geometry("360x380")
         ttk.Label(w, text="Hesap").pack(anchor="w", padx=12, pady=(8, 0))

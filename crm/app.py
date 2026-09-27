@@ -2,9 +2,13 @@
 """CrmPro ana uygulama."""
 import os
 import tkinter as tk
+import customtkinter as ctk
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 import traceback
 from datetime import date
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox
+from .modern import ttk
 
 from . import SURUM
 from .lisans import aktivasyon_formu, durum, kilit_goster
@@ -15,14 +19,14 @@ from .yardim import (agirlikli_ciro, ayar, bugun, csv_yaz, musteri_sozluk,
                      teklif_no_uret, teklif_toplam, tl, vade_yakin_mi)
 
 
-class App(tk.Tk):
+class App(ctk.CTk):
     def __init__(self, db):
         super().__init__()
         self.db = db
         self.report_callback_exception = self._hata
         self.title(f"Fu-Lin {AD} v{SURUM} — {SLOGAN}")
         self.geometry("1280x780")
-        self.configure(bg="#0b1120")
+        self.configure(fg_color="#0b1120")
 
         st = ttk.Style(self)
         try:
@@ -30,9 +34,17 @@ class App(tk.Tk):
         except Exception:
             pass
         st.configure("TNotebook.Tab", font=("Segoe UI", 10, "bold"), padding=(12, 8))
+        st.configure("TNotebook", background="#0b1120", borderwidth=0)
+        st.configure("TNotebook.Tab", background="#1a2340", foreground="#cbd5e1")
+        st.map("TNotebook.Tab", background=[("selected", "#0ea5e9")],
+               foreground=[("selected", "white")])
         st.configure("TButton", font=("Segoe UI", 10), padding=6)
-        st.configure("Treeview", rowheight=26, font=("Segoe UI", 10))
-        st.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"))
+        st.configure("Treeview", rowheight=26, font=("Segoe UI", 10),
+                     background="#131a2e", fieldbackground="#131a2e", foreground="#e8eef7")
+        st.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"),
+                     background="#1e2a4a", foreground="white")
+        st.map("Treeview", background=[("selected", "#0ea5e9")],
+               foreground=[("selected", "white")])
         st.configure("TFrame", background="#0b1120")
         st.configure("TLabel", background="#0b1120", foreground="#e8eef7")
         st.configure("TLabelframe", background="#0b1120", foreground="#e8eef7")
@@ -95,18 +107,18 @@ class App(tk.Tk):
             t.heading(k, text=b)
             t.column(k, width=w)
         t.pack(fill="both", expand=True, pady=4)
-        t.tag_configure("odd", background="#f8fafc")
-        t.tag_configure("even", background="#ffffff")
-        t.tag_configure("kritik", background="#fee2e2")
-        t.tag_configure("ok", background="#dcfce7")
-        t.tag_configure("warn", background="#fef9c3")
+        t.tag_configure("odd", background="#131a2e", foreground="#e8eef7")
+        t.tag_configure("even", background="#182036", foreground="#e8eef7")
+        t.tag_configure("kritik", background="#5a1f1f", foreground="#fecaca")
+        t.tag_configure("ok", background="#0f3d2e", foreground="#a7f3d0")
+        t.tag_configure("warn", background="#4a3a12", foreground="#fde68a")
         return t
 
     def satir(self, t, i, vals, ozel=""):
         t.insert("", "end", values=vals, tags=(ozel or ("even" if i % 2 else "odd"),))
 
     def lisans_penc(self):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Lisans")
         w.geometry("360x360")
         d = durum(self.db)
@@ -179,7 +191,7 @@ class App(tk.Tk):
         if not mus and not kayit:
             messagebox.showinfo("Bilgi", "Önce müşteri ekleyin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Fırsat")
         w.geometry("380x420")
         ttk.Label(w, text="Müşteri *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -244,7 +256,7 @@ class App(tk.Tk):
         if not f:
             messagebox.showinfo("Bilgi", "Önce fırsat seçin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title(f"Aşama (#{f['id']})")
         w.geometry("300x190")
         ttk.Label(w, text=f"Mevcut: {f['asama']}").pack(pady=8)
@@ -282,7 +294,7 @@ class App(tk.Tk):
         self.t_mus.bind("<Double-1>", lambda e: self.mus_duzenle())
 
     def mus_form(self, kayit=None):
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Müşteri")
         w.geometry("380x480")
         alan = {}
@@ -361,7 +373,7 @@ class App(tk.Tk):
         if not mus:
             messagebox.showinfo("Bilgi", "Önce müşteri ekleyin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Görüşme")
         w.geometry("380x440")
         ttk.Label(w, text="Müşteri *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -427,7 +439,7 @@ class App(tk.Tk):
         if not mus:
             messagebox.showinfo("Bilgi", "Önce müşteri ekleyin.")
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Teklif")
         w.geometry("460x560")
         ttk.Label(w, text="Müşteri *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -441,12 +453,12 @@ class App(tk.Tk):
         ek.insert(0, "20")
         ttk.Label(fr, text="Kalemler:").pack(side="left", padx=(10, 0))
         ttk.Button(fr, text="+ Kalem", command=lambda: kalem_ekle()).pack(side="right")
-        lst = tk.Listbox(w, height=8)
+        lst = tk.Listbox(w, height=8, bg="#0f172a", fg="#e8eef7", selectbackground="#0ea5e9", selectforeground="white")
         lst.pack(padx=12, fill="both", expand=True)
         kalemler = []
 
         def kalem_ekle():
-            k = tk.Toplevel(w)
+            k = ttk.Toplevel(w)
             k.title("Kalem")
             k.geometry("320x240")
             ttk.Label(k, text="Açıklama").pack(anchor="w", padx=10, pady=(8, 0))
@@ -506,7 +518,7 @@ class App(tk.Tk):
         t = self.secili_teklif()
         if not t:
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Teklif Durumu")
         w.geometry("280x170")
         cb = ttk.Combobox(w, values=TEKLIF_DURUM, state="readonly")
@@ -567,7 +579,7 @@ class App(tk.Tk):
 
     def gorev_form(self):
         mus = musteri_sozluk(self.db)
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Görev")
         w.geometry("360x360")
         ttk.Label(w, text="Başlık *").pack(anchor="w", padx=12, pady=(8, 0))
@@ -606,7 +618,7 @@ class App(tk.Tk):
         g = self.secili_gorev()
         if not g:
             return
-        w = tk.Toplevel(self)
+        w = ttk.Toplevel(self)
         w.title("Görev Durumu")
         w.geometry("280x170")
         cb = ttk.Combobox(w, values=GOREV_DURUM, state="readonly")
@@ -632,7 +644,7 @@ class App(tk.Tk):
         u.pack(fill="x", pady=4)
         ttk.Label(u, text="Toplu bilgilendirme SMS'i").pack(side="left")
         ttk.Button(u, text="✉️ SMS Gönderim Listesi", command=self.sms_liste).pack(side="right", padx=3)
-        self.sms_txt = tk.Text(self.tr, height=7, font=("Segoe UI", 10))
+        self.sms_txt = tk.Text(self.tr, height=7, font=("Segoe UI", 10), bg="#0f172a", fg="#e8eef7", insertbackground="white")
         self.sms_txt.pack(fill="x", pady=4)
         bar = ttk.Frame(self.tr)
         bar.pack(fill="x", pady=2)
