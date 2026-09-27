@@ -11,18 +11,21 @@ from tkinter import filedialog, messagebox
 from .modern import ttk
 
 from . import SURUM
+from .giris import giris_yap
+from .kullanici import kullanici_yonetimi
 from .lisans import aktivasyon_formu, durum, kilit_goster
 from .sabitler import (AD, BIRIMLER, CARI_TIP, FATURA_TIP, LISANS_TEL,
                        ODEME_YONTEM, RENK, SLOGAN)
 from .veritabani import Veritabani, uygulama_dizini
 from .yardim import (ayar, bugun, cari_bakiye, cari_sozluk, csv_yaz,
-                     fatura_no_uret, stok_degeri, tl)
+                     fatura_no_uret, stok_degeri, tl, yetkili_mi)
 
 
 class App(ctk.CTk):
-    def __init__(self, db):
+    def __init__(self, db, kullanici):
         super().__init__()
         self.db = db
+        self.kullanici = kullanici
         self.report_callback_exception = self._hata
         self.title(f"Fu-Lin {AD} v{SURUM} — {SLOGAN}")
         self.geometry("1280x780")
@@ -55,11 +58,15 @@ class App(ctk.CTk):
         tk.Label(ust, text=f"  📦  {AD}", font=("Segoe UI", 15, "bold"),
                  bg="#0d1426", fg=RENK).pack(side="left", pady=10)
         tk.Label(ust, text=f"  {ayar(db, 'isletme')}  •  v{SURUM}", bg="#0d1426", fg="#93a1b8").pack(side="left")
+        tk.Label(ust, text=f"👤 {kullanici.get('ad_soyad')} ({kullanici.get('rol')})  ",
+                 font=("Segoe UI", 10, "bold"), bg="#0d1426", fg="#5eead4").pack(side="right", padx=4)
         d = durum(db)
         if d["tip"] == "deneme":
             tk.Label(ust, text=f"  ⏳ {d['kalan']} gün  ", bg="#7c2d12", fg="#fed7aa",
                      font=("Segoe UI", 10, "bold")).pack(side="right", padx=4)
         ttk.Button(ust, text="⏻ Çıkış", command=self.cikis).pack(side="right", padx=8, pady=8)
+        if kullanici.get("rol") == "admin":
+            ttk.Button(ust, text="👥 Kullanıcılar", command=self.kullanici_ac).pack(side="right", padx=3, pady=8)
         ttk.Button(ust, text="🔑 Lisans", command=self.lisans_penc).pack(side="right", padx=3, pady=8)
         ttk.Button(ust, text="💾 Yedek", command=self.yedek).pack(side="right", padx=3, pady=8)
         ttk.Button(ust, text="Yenile", command=self.yenile).pack(side="right", padx=3, pady=8)
@@ -113,6 +120,12 @@ class App(ctk.CTk):
 
     def satir(self, t, i, vals, ozel=""):
         t.insert("", "end", values=vals, tags=(ozel or ("even" if i % 2 else "odd"),))
+
+    def kullanici_ac(self):
+        if self.kullanici.get("rol") != "admin":
+            messagebox.showwarning("Yetki", "Sadece admin.")
+            return
+        kullanici_yonetimi(self, self.db)
 
     def lisans_penc(self):
         w = ttk.Toplevel(self)
@@ -331,6 +344,9 @@ class App(ctk.CTk):
             self.cari_form(k)
 
     def cari_sil(self):
+        if not yetkili_mi(self.kullanici, "admin"):
+            messagebox.showwarning("Yetki", "Silme için admin gerekli.")
+            return
         k = self.secili_cari()
         if k and messagebox.askyesno("Onay", "Cari silinsin mi? (faturaları kalır)"):
             self.db.sorgu("DELETE FROM cariler WHERE id=?", (k["id"],))
@@ -445,6 +461,9 @@ class App(ctk.CTk):
         ttk.Button(w, text="Faturayı Kes", command=k).pack(pady=10)
 
     def fatura_sil(self):
+        if not yetkili_mi(self.kullanici, "admin"):
+            messagebox.showwarning("Yetki", "Silme için admin gerekli.")
+            return
         s = self.t_fat.selection()
         if not s:
             return
@@ -637,4 +656,7 @@ def main():
     db = Veritabani()
     if durum(db)["kilitli"] and not kilit_goster(db):
         return
-    App(db).mainloop()
+    user = giris_yap(db)
+    if not user:
+        return
+    App(db, user).mainloop()

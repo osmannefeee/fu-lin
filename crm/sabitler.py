@@ -17,3 +17,5 @@ DENEME_GUN = 14
 LISANS_SECRET = "FuLin-Crm-2026"
 LISANS_TEL = "0551 194 78 40"
 WA_NO = "905511947840"
+
+ROLLER = ["admin", "personel"]

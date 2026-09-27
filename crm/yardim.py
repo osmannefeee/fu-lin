@@ -74,3 +74,12 @@ def csv_yaz(klasor, ad, basliklar, satirlar):
         w.writerow(basliklar)
         w.writerows(satirlar)
     return yol
+
+
+def sifre_hashla(sifre):
+    import hashlib
+    return hashlib.sha256((sifre or "").encode("utf-8")).hexdigest()
+
+
+def yetkili_mi(kullanici, *roller):
+    return (kullanici or {}).get("rol") in roller

@@ -65,3 +65,5 @@ LISANS_SECRET = "FuLin-Tamir-2026"
 LISANS_TEL = "0551 194 78 40"
 WA_NO = "905511947840"
 ODEME_YONTEM = ["Nakit", "Kredi Kartı", "Havale/EFT", "Diğer"]
+
+ROLLER = ["admin", "personel"]
