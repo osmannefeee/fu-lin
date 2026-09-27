@@ -63,7 +63,18 @@ class Combobox(_ctk.CTkComboBox):
 
 
 class Toplevel(_ctk.CTkToplevel):
-    pass
+    def __init__(self, master=None, **kw):
+        super().__init__(master, **kw)
+        try:
+            if master is not None:
+                self.transient(master)
+        except Exception:
+            pass
+        try:
+            self.lift()
+            self.grab_set()
+        except Exception:
+            pass
 
 
 class _TtkModul:
