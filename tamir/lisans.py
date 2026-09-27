@@ -54,7 +54,7 @@ def aktivasyon_formu(parent, db):
     e_kod = ttk.Entry(cer)
     e_kod.pack(fill="x")
     e_kod.insert(0, kod)
-    e_kod.config(state="disabled")
+    e_kod.configure(state="disabled")
     ttk.Label(cer, text="Lisans anahtarı:").pack(anchor="w", pady=(8, 0))
     e_key = ttk.Entry(cer)
     e_key.pack(fill="x")

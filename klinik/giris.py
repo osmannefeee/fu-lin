@@ -41,7 +41,7 @@ def giris_yap(db):
             sonuc["user"] = dict(rows[0])
             root.destroy()
         else:
-            durum.config(text="Hatalı kullanıcı adı veya şifre!", fg="#f87171")
+            durum.configure(text="Hatalı kullanıcı adı veya şifre!", fg="#f87171")
             messagebox.showwarning("Giriş", "Hatalı kullanıcı adı veya şifre.", parent=root)
 
     ttk.Button(root, text="Giriş Yap", command=dene).pack(pady=6, ipadx=20)

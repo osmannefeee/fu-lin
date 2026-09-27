@@ -64,11 +64,11 @@ class SekmeTedavi(ttk.Frame):
         for i in self.t_ode.get_children():
             self.t_ode.delete(i)
         if not hid:
-            self.ozet.config(text="Hasta seçin")
+            self.ozet.configure(text="Hasta seçin")
             return
         self.app.secili_hasta = hid
         kalan, toplam, odenen = hasta_borc(db, hid)
-        self.ozet.config(text=f"Toplam: {para_fmt(toplam)}  |  Ödenen: {para_fmt(odenen)}  |  Kalan: {para_fmt(kalan)}")
+        self.ozet.configure(text=f"Toplam: {para_fmt(toplam)}  |  Ödenen: {para_fmt(odenen)}  |  Kalan: {para_fmt(kalan)}")
         for i, r in enumerate(db.listele("SELECT * FROM tedaviler WHERE hasta_id=? ORDER BY tarih DESC", (hid,))):
             self.t_ted.insert("", "end", values=(r["id"], r["tarih"], r["islem"], r["dis_no"],
                                                  para_fmt(r["toplam_ucret"]), r["durum"]), tags=cift_tag(i))

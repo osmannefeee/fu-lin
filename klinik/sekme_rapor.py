@@ -96,7 +96,7 @@ def kullanici_yonetimi(pencere, db):
         e_s.pack(padx=12, fill="x")
         if kayit:
             e_k.insert(0, kayit["kullanici_adi"])
-            e_k.config(state="disabled")
+            e_k.configure(state="disabled")
             e_a.insert(0, kayit["ad_soyad"] or "")
             cb.set(kayit["rol"])
 

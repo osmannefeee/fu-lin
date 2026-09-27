@@ -584,9 +584,9 @@ class App(ctk.CTk):
         haz = db.listele("SELECT COUNT(*) s FROM kayitlar WHERE durum='Hazır'")[0]["s"]
         gb = sum(1 for r in db.listele("SELECT garanti_bitis FROM kayitlar WHERE garanti_var=1 AND garanti_bitis<>''")
                  if garanti_durumu(r["garanti_bitis"])[0] in ("bitmis", "yaklasiyor"))
-        self.deger["ack"].config(text=str(ack))
-        self.deger["haz"].config(text=str(haz))
-        self.deger["gar"].config(text=str(gb))
+        self.deger["ack"].configure(text=str(ack))
+        self.deger["haz"].configure(text=str(haz))
+        self.deger["gar"].configure(text=str(gb))
         for t in (self.t_panel, self.t_kayit, self.t_mus, self.t_tek, self.t_par, self.t_gar, self.t_kasa):
             for i in t.get_children():
                 t.delete(i)
@@ -642,7 +642,7 @@ class App(ctk.CTk):
             self.satir(self.t_kasa, j, (r["tarih"], f"#{r['kayit_id']}" if r["kayit_id"] else "-", r["ad_soyad"],
                                         tl(r["tutar"]), r["yontem"]))
             tah += r["tutar"] or 0
-        self.kasa_ozet.config(text=f"Toplam tahsilat: {tl(tah)}  |  Bu ay: {tl(ciro)}")
+        self.kasa_ozet.configure(text=f"Toplam tahsilat: {tl(tah)}  |  Bu ay: {tl(ciro)}")
         nis = db.listele("SELECT COUNT(*) s FROM kayitlar WHERE substr(gelis,1,7)=?", (ay,))[0]["s"]
         sat = [f"===== {ay} SERVİS RAPORU =====", f"Alınan kayıt: {nis}", f"Tahsilat: {tl(ciro)}", "",
                "--- Durum Dağılımı ---"]

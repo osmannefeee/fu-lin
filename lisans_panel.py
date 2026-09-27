@@ -38,7 +38,7 @@ def uret():
         messagebox.showwarning("Uyarı", "Kurulum kodu girin.", parent=root)
         return
     anahtar["k"] = lisans_anahtari_uret(kod)
-    sonuc.config(text=anahtar["k"])
+    sonuc.configure(text=anahtar["k"])
     root.clipboard_clear()
     root.clipboard_append(anahtar["k"])
 

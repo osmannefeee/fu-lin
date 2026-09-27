@@ -565,13 +565,13 @@ class App(ctk.CTk):
     def yenile(self):
         db = self.db
         ay = date.today().strftime("%Y-%m")
-        self.deger["stok"].config(text=tl(stok_degeri(db)))
+        self.deger["stok"].configure(text=tl(stok_degeri(db)))
         kt = db.listele("""SELECT COALESCE(SUM(CASE WHEN yon='Giriş' THEN tutar ELSE -tutar END),0) s
                            FROM kasa_hareket""")[0]["s"] or 0
-        self.deger["kasa"].config(text=tl(kt))
+        self.deger["kasa"].configure(text=tl(kt))
         alc = sum(cari_bakiye(db, r["id"]) for r in db.listele("SELECT id FROM cariler WHERE tip='Müşteri'"))
         borc = -sum(cari_bakiye(db, r["id"]) for r in db.listele("SELECT id FROM cariler WHERE tip='Tedarikçi'"))
-        self.deger["alc"].config(text=f"{tl(alc)} / {tl(borc)}")
+        self.deger["alc"].configure(text=f"{tl(alc)} / {tl(borc)}")
 
         for i in self.t_kritik.get_children():
             self.t_kritik.delete(i)
@@ -616,7 +616,7 @@ class App(ctk.CTk):
         hesaplar = [(r["ad"], db.listele("""SELECT COALESCE(SUM(CASE WHEN yon='Giriş' THEN tutar ELSE -tutar END),0) s
             FROM kasa_hareket WHERE hesap_id=?""", (r["id"],))[0]["s"] or 0)
             for r in db.listele("SELECT * FROM hesaplar")]
-        self.kasa_ozet.config(text="  •  ".join(f"{a}: {tl(b)}" for a, b in hesaplar))
+        self.kasa_ozet.configure(text="  •  ".join(f"{a}: {tl(b)}" for a, b in hesaplar))
         sat = db.listele("SELECT COALESCE(SUM(genel),0) s FROM faturalar WHERE tip='Satış' AND substr(tarih,1,7)=?",
                          (ay,))[0]["s"] or 0
         als = db.listele("SELECT COALESCE(SUM(genel),0) s FROM faturalar WHERE tip='Alış' AND substr(tarih,1,7)=?",

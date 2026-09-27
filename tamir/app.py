@@ -624,9 +624,9 @@ class App(ctk.CTk):
         bek = db.listele("SELECT COUNT(*) s FROM is_emirleri WHERE durum NOT IN ('Teslim Edildi','İptal')")[0]["s"]
         haz = db.listele("SELECT COUNT(*) s FROM is_emirleri WHERE durum='Hazır'")[0]["s"]
         ciro = db.listele("SELECT COALESCE(SUM(tutar),0) s FROM odemeler WHERE substr(tarih,1,7)=?", (ay,))[0]["s"] or 0
-        self.deger["bek"].config(text=str(bek))
-        self.deger["haz"].config(text=str(haz))
-        self.deger["ay"].config(text=tl(ciro))
+        self.deger["bek"].configure(text=str(bek))
+        self.deger["haz"].configure(text=str(haz))
+        self.deger["ay"].configure(text=tl(ciro))
 
         for t in (self.t_panel, self.t_emir, self.t_mus, self.t_stok, self.t_kasa):
             for i in t.get_children():
@@ -667,7 +667,7 @@ class App(ctk.CTk):
             LEFT JOIN musteriler m ON m.id=o.musteri_id ORDER BY o.id DESC LIMIT 200""")):
             self.satir(self.t_kasa, j, (r["tarih"], f"#{r['eid']}" if r["eid"] else "-", r["ad"], tl(r["tutar"]), r["yontem"]))
             tah += r["tutar"] or 0
-        self.kasa_ozet.config(text=f"Toplam tahsilat: {tl(tah)}  |  Bu ay: {tl(ciro)}")
+        self.kasa_ozet.configure(text=f"Toplam tahsilat: {tl(tah)}  |  Bu ay: {tl(ciro)}")
         nis = db.listele("SELECT COUNT(*) s FROM is_emirleri WHERE substr(gelis,1,7)=?", (ay,))[0]["s"]
         kesilen = db.listele("SELECT COALESCE(SUM(toplam),0) s FROM is_emirleri WHERE substr(gelis,1,7)=?",
                              (ay,))[0]["s"] or 0

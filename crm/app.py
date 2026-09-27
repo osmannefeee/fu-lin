@@ -695,12 +695,12 @@ class App(ctk.CTk):
         db = self.db
         ay = date.today().strftime("%Y-%m")
         acik = db.listele("SELECT COUNT(*) s FROM firsatlar WHERE asama NOT IN ('Kazanıldı','Kaybedildi')")[0]["s"]
-        self.deger["frs"].config(text=str(acik))
-        self.deger["agr"].config(text=tl(agirlikli_ciro(db)))
+        self.deger["frs"].configure(text=str(acik))
+        self.deger["agr"].configure(text=tl(agirlikli_ciro(db)))
         tkp = db.listele("SELECT COUNT(*) s FROM aktiviteler WHERE takip<>'' AND takip<=?", (bugun(),))[0]["s"]
         tkp += db.listele("SELECT COUNT(*) s FROM gorevler WHERE durum!='Bitti' AND bitis<>'' AND bitis<=?",
                           (bugun(),))[0]["s"]
-        self.deger["tkp"].config(text=str(tkp))
+        self.deger["tkp"].configure(text=str(tkp))
 
         for t in (self.t_sicak, self.t_takip, self.t_firsat, self.t_mus, self.t_akt, self.t_tek, self.t_gor):
             for i in t.get_children():

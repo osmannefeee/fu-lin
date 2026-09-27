@@ -57,7 +57,7 @@ class SekmeSema(ttk.Frame):
         durumlar = {r["dis_no"]: r["durum"] for r in
                     self.app.db.listele("SELECT * FROM dis_durum WHERE hasta_id=?", (hid,))}
         sorunlu = sum(1 for d in durumlar.values() if d != "Sağlam")
-        self.ozet.config(text=f"İşaretli diş: {len(durumlar)}  |  Sorunlu: {sorunlu}")
+        self.ozet.configure(text=f"İşaretli diş: {len(durumlar)}  |  Sorunlu: {sorunlu}")
         for baslik, liste in [("— ÜST ÇENE —", DISLER_UST), ("— ALT ÇENE —", DISLER_ALT)]:
             ttk.Label(self.cerceve, text=baslik, style="Title.TLabel").pack(pady=(8, 2))
             satir = tk.Frame(self.cerceve, bg="#0b1120")

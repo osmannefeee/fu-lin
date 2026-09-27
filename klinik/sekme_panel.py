@@ -53,10 +53,10 @@ class SekmePanel(ttk.Frame):
         ode = db.listele("SELECT COALESCE(SUM(tutar),0) s FROM odemeler")[0]["s"] or 0
         ay = date.today().strftime("%Y-%m")
         aylik = db.listele("SELECT COALESCE(SUM(tutar),0) s FROM odemeler WHERE substr(tarih,1,7)=?", (ay,))[0]["s"] or 0
-        self.deger["hasta"].config(text=str(n_hasta))
-        self.deger["bugun"].config(text=str(n_bugun))
-        self.deger["borc"].config(text=para_fmt(top - ode))
-        self.deger["aylik"].config(text=para_fmt(aylik))
+        self.deger["hasta"].configure(text=str(n_hasta))
+        self.deger["bugun"].configure(text=str(n_bugun))
+        self.deger["borc"].configure(text=para_fmt(top - ode))
+        self.deger["aylik"].configure(text=para_fmt(aylik))
 
         for i in self.t_bugun.get_children():
             self.t_bugun.delete(i)
